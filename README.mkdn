@@ -1,0 +1,31 @@
+Temasek
+=======
+
+What's this, dawg?
+------------------
+This vendor repository is for OTA integrations to Temasek builds.
+OTA mechanisms from https://github.com/Kryten2k35/OTAUpdates
+
+Please read https://github.com/Kryten2k35/OTAUpdates/blob/stable/Manually.md
+if you want to add this OTA mechanisms to your builds.
+
+This repository installs prebuilt OTAUpdates.apk from
+http://ultimarom.com/downloads/ota-updates
+
+You must set those on your device.mk to use with this vendor repository:
+```
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ota.romname=ROMNAME \
+    ro.ota.version=$(shell date +%F | sed s@-@@g) \
+    ro.ota.manifest=XMLLINK
+
+PRODUCT_PACKAGES += \
+    OTAUpdates \
+    libbypass
+```
+Please note that you'll most likely to have problems when you tend to release
+more than 1 build per day.
+
+Refer to these for example, adding OTA support for Nexus 7 (2013) Temasek builds:
+- https://github.com/arter97/android_device_asus_flo/commit/3f2c75fec1f808cccaddf1f0841a7cfb1cd7a707
+- http://arter97.com/ota/flo.xml
